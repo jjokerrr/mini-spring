@@ -2,6 +2,7 @@
 创建一个简单的BeanFactory
 # Bean Definition Registry and Bean Factory
 ![层次结构](https://github.com/DerekYRC/mini-spring/blob/main/assets/bean-definition-and-bean-definition-registry.png)
+
 Bean Definition 和 Bean Singleton注册
 - BeanDefinition 保存bean的基本信息，这里简化为保存bean的class类型，用于反射构建类实例
 - BeanDefinitionRegistry 提供注册BeanDefinition的注册接口
