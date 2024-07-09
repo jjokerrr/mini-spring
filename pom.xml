@@ -15,11 +15,18 @@
     </properties>
 
     <dependencies>
+        <!--junit 用于单元测试-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
             <scope>test</scope>
+        </dependency>
+        <!--hutool 用于属性注入-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
+            <version>5.5.0</version>
         </dependency>
     </dependencies>
 </project>

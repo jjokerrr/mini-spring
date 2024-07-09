@@ -10,3 +10,4 @@ Bean Definition 和 Bean Singleton注册
 - DefaultSingletonBeanRegistry 实现SingletonBeanRegistry接口，提供单例map，获取单例Bean的时候Lazy创建单例对象
 - AbstractAutowireCapableBeanFactory AbstractBeanFactory抽象类接口，提供lazy创建单例的具体实现
 - DefaultListableBeanFactory 实现详细的Bean注册和获取流程
+# Populate Bean with Property
