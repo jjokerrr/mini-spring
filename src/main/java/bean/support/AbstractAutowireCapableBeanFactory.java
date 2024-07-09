@@ -1,6 +1,7 @@
 package bean.support;
 
 import bean.config.BeanDefinition;
+import bean.config.BeanReference;
 import bean.exception.BeanException;
 import cn.hutool.core.bean.BeanUtil;
 
@@ -18,20 +19,27 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
      */
     private Object doCreateBean(String name, BeanDefinition beanDefinition) throws BeanException {
         Object bean = instantiationStrategy.instantiate(beanDefinition);
-        applyPropertyValues(bean, beanDefinition);
+        applyPropertyValues(name, bean, beanDefinition);
         addSingleton(name, bean);
         return bean;
     }
 
     /**
-     * 填充Bean对象属性
+     * 填充Bean对象属性，对于属性值是一个Bean对象，则会递归的实例化Bean
      */
-    private void applyPropertyValues(Object bean, BeanDefinition beanDefinition) {
+    private void applyPropertyValues(String beanName, Object bean, BeanDefinition beanDefinition) throws BeanException {
         PropertyValues propertyValues = beanDefinition.getPropertyValues();
-        for (PropertyValue propertyValue : propertyValues.getPropertyValueList()) {
-            String fieldName = propertyValue.getKey();
-            Object fieldValue = propertyValue.getValue();
-            BeanUtil.setFieldValue(bean, fieldName, fieldValue);
+        try {
+            for (PropertyValue propertyValue : propertyValues.getPropertyValueList()) {
+                String fieldName = propertyValue.getKey();
+                Object fieldValue = propertyValue.getValue();
+                if (fieldValue instanceof BeanReference) {
+                    fieldValue = getBean(((BeanReference) fieldValue).getBeanName());
+                }
+                BeanUtil.setFieldValue(bean, fieldName, fieldValue);
+            }
+        } catch (BeanException e) {
+            throw new BeanException("Error setting property values for bean: " + beanName, e);
         }
     }
 

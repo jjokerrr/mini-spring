@@ -3,12 +3,21 @@ package common;
 public class Person {
     private String name;
     private Integer age;
+    private Car car;
     public Person(){
 
     }
     public Person(String name,Integer age){
         this.name = name;
         this.age = age;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public Car getCar() {
+        return car;
     }
 
     public String getName() {
@@ -25,5 +34,14 @@ public class Person {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", car=" + car +
+                '}';
     }
 }

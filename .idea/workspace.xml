@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4543082-a6f5-4c26-96ee-8e49c04d6436" name="更改" comment="Populate bean with property values,using simple instantiation strategy&#10;- 更新BeanDefinition，添加PropertyValues属性，用于填充Bean对象的成员属性&#10;- 实现简单Bean填充策略SimpleInstantiationStrategy&#10;- Bean初始化流程---使用默认构造方法创建Bean实例---使用默认Simple填充策略给Bean对象填充PropertyValues中的全部属性">
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/support/InstantiationStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/support/PropertyValue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/support/PropertyValues.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/support/SimpleInstantiationStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/PopulateBeanWithPropertiesTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/common/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="b4543082-a6f5-4c26-96ee-8e49c04d6436" name="更改" comment="更新Populate Bean 部分的Readme">
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/config/BeanReference.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/PopulateBeanWithBeanTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/common/Car.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/config/BeanDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/config/BeanDefinition.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bean/support/AbstractAutowireCapableBeanFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/support/AbstractAutowireCapableBeanFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/common/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/common/Person.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,10 +29,18 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="bean-definition-and-bean-registry" />
+        <entry key="$PROJECT_DIR$" value="populate-bean-with-property-values" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HierarchyBrowserManager">
+    <option name="SORT_ALPHABETICALLY" value="true" />
+  </component>
+  <component name="JavaAutoRunManager">
+    <enabled-run-configurations>
+      <run-configuration type="JUnit" name="PopulateBeanWithBeanTest.testPopulateBeanWithBean" />
+    </enabled-run-configurations>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -59,29 +62,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.PopulateBeanWithPropertiesTest.testCreateBean.executor&quot;: &quot;Debug&quot;,
-    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;populate-bean-with-property-values&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.PopulateBeanWithBeanTest.testPopulateBeanWithBean.executor": "Debug",
+    "JUnit.PopulateBeanWithPropertiesTest.testCreateBean.executor": "Debug",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "populate-bean-with-bean",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "F:/Code/Java/spring/assets",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="JUnit.PopulateBeanWithPropertiesTest.testCreateBean">
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Code\Java\spring\assets" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.PopulateBeanWithBeanTest.testPopulateBeanWithBean">
     <configuration name="BeanDefinitionRegistryAndBeanFactoryTest.testBeanFactory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="spring" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="BeanDefinitionRegistryAndBeanFactoryTest" />
       <option name="METHOD_NAME" value="testBeanFactory" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PopulateBeanWithBeanTest.testPopulateBeanWithBean" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PopulateBeanWithBeanTest" />
+      <option name="METHOD_NAME" value="testPopulateBeanWithBean" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -109,12 +129,15 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PopulateBeanWithBeanTest.testPopulateBeanWithBean" />
+        <item itemvalue="JUnit.SimpleBeanContainerTest.test" />
         <item itemvalue="JUnit.PopulateBeanWithPropertiesTest.testCreateBean" />
-        <item itemvalue="JUnit.SimpleBeanContainerTest.test" />
         <item itemvalue="JUnit.BeanDefinitionRegistryAndBeanFactoryTest.testBeanFactory" />
         <item itemvalue="JUnit.SimpleBeanContainerTest.test" />
+        <item itemvalue="JUnit.PopulateBeanWithPropertiesTest.testCreateBean" />
         <item itemvalue="JUnit.BeanDefinitionRegistryAndBeanFactoryTest.testBeanFactory" />
         <item itemvalue="JUnit.SimpleBeanContainerTest.test" />
+        <item itemvalue="JUnit.PopulateBeanWithPropertiesTest.testCreateBean" />
         <item itemvalue="JUnit.BeanDefinitionRegistryAndBeanFactoryTest.testBeanFactory" />
       </list>
     </recent_temporary>
@@ -130,6 +153,7 @@
       <workItem from="1720430979131" duration="218000" />
       <workItem from="1720448462767" duration="4953000" />
       <workItem from="1720489312397" duration="344000" />
+      <workItem from="1720529334341" duration="4965000" />
     </task>
     <task id="LOCAL-00001" summary="项目文件">
       <option name="closed" value="true" />
@@ -139,7 +163,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720445689292</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="更新Readme 新增Readme图片集">
+      <option name="closed" value="true" />
+      <created>1720539189747</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1720539189747</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,12 +191,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="项目文件" />
     <MESSAGE value="Populate bean with property values,using simple instantiation strategy&#10;- 更新BeanDefinition，添加PropertyValues属性，用于填充Bean对象的成员属性&#10;- 实现简单Bean填充策略SimpleInstantiationStrategy&#10;- Bean初始化流程---使用默认构造方法创建Bean实例---使用默认Simple填充策略给Bean对象填充PropertyValues中的全部属性" />
-    <option name="LAST_COMMIT_MESSAGE" value="Populate bean with property values,using simple instantiation strategy&#10;- 更新BeanDefinition，添加PropertyValues属性，用于填充Bean对象的成员属性&#10;- 实现简单Bean填充策略SimpleInstantiationStrategy&#10;- Bean初始化流程---使用默认构造方法创建Bean实例---使用默认Simple填充策略给Bean对象填充PropertyValues中的全部属性" />
+    <MESSAGE value="更新Readme 新增Readme图片集" />
+    <MESSAGE value="更新Populate Bean 部分的Readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新Populate Bean 部分的Readme" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
       <pinned-members>
+        <PinnedItemInfo parentTag="bean.support.DefaultListableBeanFactory" memberName="singletonMap" />
         <PinnedItemInfo parentTag="common.Person" memberName="name" />
+        <PinnedItemInfo parentTag="bean.support.PropertyValue" memberName="key" />
       </pinned-members>
     </pin-to-top-manager>
   </component>
