@@ -30,3 +30,9 @@ Populate bean with property values,using simple instantiation strategy
 - 新增Bean引用关系对象BeanReference，用于在Properties中说明Bean之间的引用关系
 - 修改Bean的属性注入方法，如果是引用BeanB，则会关联创建BeanB的对象然后属性注入到BeanA中
 - 暂时不支持循环依赖
+
+# Resource and ResourceLoader
+![ResourceLoader](./assets/DefaultResourceClassLoader.png)
+![Resource](./assets/Resource.png)
+- 新增Resource接口以及Resource的实现类ClassPathResource、FileSystemResource、UrlResource
+- 新增ResourceLoader接口以及默认实现类DefaultResourceClassLoader，按照类路径，文件和url的方式进行
