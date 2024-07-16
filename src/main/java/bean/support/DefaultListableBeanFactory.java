@@ -1,15 +1,18 @@
 package bean.support;
 
+import bean.ConfigurableListableBeanFactory;
 import bean.config.BeanDefinition;
 import bean.config.BeanDefinitionRegistry;
 import bean.exception.BeanException;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * BeanFactory 实现类对象，注册BeanDefinition，维护单例SingletonBeanMap，采用Lazy加载模式
  */
-public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry {
+public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry, ConfigurableListableBeanFactory {
 
     HashMap<String, BeanDefinition> beanDefinitionHashMap = new HashMap<>();
 
@@ -25,15 +28,37 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
     }
 
+    @Override
+    public boolean containsBeanDefinition(String name) {
+        return beanDefinitionHashMap.containsKey(name);
+    }
 
 
     @Override
-    protected BeanDefinition getBeanDefinition(String name) throws BeanException {
+    public BeanDefinition getBeanDefinition(String name) throws BeanException {
         BeanDefinition beanDefinition = beanDefinitionHashMap.get(name);
         if (beanDefinition == null) {
             throw new BeanException("no bean named " + name + " is defined!");
         }
         return beanDefinition;
 
+    }
+
+    @Override
+    public <T> Map<String, T> getBeansOfType(Class<T> type) throws BeanException {
+        Map<String, T> beanMap = new HashMap<>();
+        beanDefinitionHashMap.forEach((beanName, beanDefinition) -> {
+            if (type.isAssignableFrom(beanDefinition.getBeanClass())) {
+                T bean = getBean(beanName, type);
+                beanMap.put(beanName, bean);
+            }
+        });
+        return beanMap;
+    }
+
+    @Override
+    public String[] getBeanDefinitionNames() {
+        Set<String> beanDefinitionNames = this.beanDefinitionHashMap.keySet();
+        return beanDefinitionNames.toArray(new String[beanDefinitionNames.size()]);
     }
 }

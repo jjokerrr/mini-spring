@@ -32,7 +32,19 @@ Populate bean with property values,using simple instantiation strategy
 - 暂时不支持循环依赖
 
 # Resource and ResourceLoader
+
 ![ResourceLoader](./assets/DefaultResourceClassLoader.png)
 ![Resource](./assets/Resource.png)
+
 - 新增Resource接口以及Resource的实现类ClassPathResource、FileSystemResource、UrlResource
 - 新增ResourceLoader接口以及默认实现类DefaultResourceClassLoader，按照类路径，文件和url的方式进行
+
+# Xml Bean Definition
+
+使用xml格式进行Bean对象的声明和属性注入，对于BeanFactory进行进一步的抽象，具体参考继承图
+![DefaultListableBeanFactory](./assets/xml-define-bean-DefaultListableBeanFactory.png)
+![XmlBeanDefinitionLoader](./assets/xml-bean-difinition-XmlBeanDefinitionReader.png)
+
+- 将BeanFactory系列的接口和抽象类进行进一步的抽象处理，抽象层次参考继承图，会在后面具体描述每一个接口的作用
+- 实现类Spring形式的xml文件定义Bean和进行Bean的属性注入，使用xml格式支持对Bean的String属性和bean属性进行注入，目前不支持对于其他基本数据格式的注入
+- BeanDefinitionReader是读取Bean信息的抽象接口，其中包含两个属性分别是BeanDefinitionRegistry是Bean定义信息的注册中心和ResourceLoader是定义文件的加载器。BeanDefinitionReader中的loadBeanDefinition是重要方法，用于从资源文件中解析Bean定义

@@ -4,17 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4543082-a6f5-4c26-96ee-8e49c04d6436" name="更改" comment="更新Populate Bean 部分的Readme">
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/io/ClassPathResource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/io/DefaultResourceClassLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/io/FileSystemResource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/io/Resource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/io/ResourceLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/io/UrlResource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ResourceAndResourceLoaderTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/hello.txt" afterDir="false" />
+    <list default="true" id="b4543082-a6f5-4c26-96ee-8e49c04d6436" name="更改" comment="xml-define-bean&#10;实现通过xml文件进行Bean的定义和属性注入，同时对BeanFactory接口及其子类进行更深层次的抽象&#10;- 将BeanFactory系列的接口和抽象类进行进一步的抽象处理，抽象层次参考继承图，会在后面具体描述每一个接口的作用&#10;- 实现类Spring形式的xml文件定义Bean和进行Bean的属性注入，使用xml格式支持对Bean的String属性和bean属性进行注入，目前不支持对于其他基本数据格式的注入">
+      <change afterPath="$PROJECT_DIR$/assets/xml-bean-difinition-XmlBeanDefinitionReader.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/xml-define-bean-DefaultListableBeanFactory.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/ConfigurableListableBeanFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/HierarchicalBeanFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/ListableBeanFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/config/AutowireCapableBeanFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/config/ConfigurableBeanFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/support/AbstractBeanDefinitionReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/support/BeanDefinitionReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/xml/XmlBeanDefinitionReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/common/XmlDefineBeanTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/spring.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bean/BeanFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/BeanFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bean/config/BeanDefinitionRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/config/BeanDefinitionRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bean/exception/BeanException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/exception/BeanException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bean/support/AbstractAutowireCapableBeanFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/support/AbstractAutowireCapableBeanFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bean/support/AbstractBeanFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/support/AbstractBeanFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bean/support/DefaultListableBeanFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/support/DefaultListableBeanFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/io/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/io/Resource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/common/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/common/Car.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +44,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="resource-resource-loader" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -60,35 +72,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.PopulateBeanWithBeanTest.testPopulateBeanWithBean.executor": "Debug",
-    "JUnit.PopulateBeanWithPropertiesTest.testCreateBean.executor": "Debug",
-    "JUnit.ResourceAndResourceLoader.getClassPath.executor": "Run",
-    "JUnit.ResourceAndResourceLoader.testClassPathResource.executor": "Run",
-    "JUnit.ResourceAndResourceLoader.testFileSystemResource.executor": "Run",
-    "JUnit.ResourceAndResourceLoader.testUrlResource.executor": "Run",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "resource-resource-loader",
-    "jdk.selected.JAVA_MODULE": "1.8",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "F:/Code/Java/spring/assets",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.uml",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.PopulateBeanWithBeanTest.testPopulateBeanWithBean.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.PopulateBeanWithPropertiesTest.testCreateBean.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ResourceAndResourceLoader.getClassPath.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ResourceAndResourceLoader.testClassPathResource.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ResourceAndResourceLoader.testFileSystemResource.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ResourceAndResourceLoader.testUrlResource.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.XmlDefineBeanTest.testXmlDefineBean.executor&quot;: &quot;Debug&quot;,
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;xml-define-bean&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/Code/Java/spring/src/test/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.uml&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Code\Java\spring\src\test\resources" />
       <recent name="F:\Code\Java\spring\assets" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ResourceAndResourceLoader.testClassPathResource">
+  <component name="RunManager" selected="JUnit.XmlDefineBeanTest.testXmlDefineBean">
     <configuration name="BeanDefinitionRegistryAndBeanFactoryTest.testBeanFactory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="spring" />
       <option name="PACKAGE_NAME" value="" />
@@ -169,8 +183,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="XmlDefineBeanTest.testXmlDefineBean" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="common.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="common" />
+      <option name="MAIN_CLASS_NAME" value="common.XmlDefineBeanTest" />
+      <option name="METHOD_NAME" value="testXmlDefineBean" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.XmlDefineBeanTest.testXmlDefineBean" />
         <item itemvalue="JUnit.ResourceAndResourceLoader.testClassPathResource" />
         <item itemvalue="JUnit.ResourceAndResourceLoader.getClassPath" />
         <item itemvalue="JUnit.ResourceAndResourceLoader.testUrlResource" />
@@ -180,7 +211,6 @@
         <item itemvalue="JUnit.PopulateBeanWithPropertiesTest.testCreateBean" />
         <item itemvalue="JUnit.BeanDefinitionRegistryAndBeanFactoryTest.testBeanFactory" />
         <item itemvalue="JUnit.SimpleBeanContainerTest.test" />
-        <item itemvalue="JUnit.PopulateBeanWithPropertiesTest.testCreateBean" />
       </list>
     </recent_temporary>
   </component>
@@ -199,6 +229,7 @@
       <workItem from="1720686286660" duration="1547000" />
       <workItem from="1721031429178" duration="1192000" />
       <workItem from="1721035137103" duration="5745000" />
+      <workItem from="1721129687658" duration="2772000" />
     </task>
     <task id="LOCAL-00001" summary="项目文件">
       <option name="closed" value="true" />
@@ -216,7 +247,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720539189747</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="readme图片集">
+      <option name="closed" value="true" />
+      <created>1721041414681</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1721041414681</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,15 +276,29 @@
     <MESSAGE value="项目文件" />
     <MESSAGE value="Populate bean with property values,using simple instantiation strategy&#10;- 更新BeanDefinition，添加PropertyValues属性，用于填充Bean对象的成员属性&#10;- 实现简单Bean填充策略SimpleInstantiationStrategy&#10;- Bean初始化流程---使用默认构造方法创建Bean实例---使用默认Simple填充策略给Bean对象填充PropertyValues中的全部属性" />
     <MESSAGE value="更新Readme 新增Readme图片集" />
+    <MESSAGE value="新增Resource接口以及Resource的实现类ClassPathResource、FileSystemResource、UrlResource&#10;新增ResourceLoader接口以及默认实现类DefaultResourceClassLoader，按照类路径，文件和url的方式进行" />
     <MESSAGE value="更新Populate Bean 部分的Readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新Populate Bean 部分的Readme" />
+    <MESSAGE value="readme图片集" />
+    <MESSAGE value="xml-define-bean&#10;实现通过xml文件进行Bean的定义和属性注入，同时对BeanFactory接口及其子类进行更深层次的抽象&#10;- 将BeanFactory系列的接口和抽象类进行进一步的抽象处理，抽象层次参考继承图，会在后面具体描述每一个接口的作用&#10;- 实现类Spring形式的xml文件定义Bean和进行Bean的属性注入，使用xml格式支持对Bean的String属性和bean属性进行注入，目前不支持对于其他基本数据格式的注入" />
+    <option name="LAST_COMMIT_MESSAGE" value="xml-define-bean&#10;实现通过xml文件进行Bean的定义和属性注入，同时对BeanFactory接口及其子类进行更深层次的抽象&#10;- 将BeanFactory系列的接口和抽象类进行进一步的抽象处理，抽象层次参考继承图，会在后面具体描述每一个接口的作用&#10;- 实现类Spring形式的xml文件定义Bean和进行Bean的属性注入，使用xml格式支持对Bean的String属性和bean属性进行注入，目前不支持对于其他基本数据格式的注入" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/common/XmlDefineBeanTest.java</url>
+          <line>9</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
+        <PinnedItemInfo parentTag="bean.support.DefaultListableBeanFactory" memberName="beanDefinitionHashMap" />
         <PinnedItemInfo parentTag="bean.support.DefaultListableBeanFactory" memberName="singletonMap" />
         <PinnedItemInfo parentTag="common.Person" memberName="name" />
         <PinnedItemInfo parentTag="bean.support.PropertyValue" memberName="key" />
+        <PinnedItemInfo parentTag="java.io.BufferedInputStream" memberName="count" />
       </pinned-members>
     </pin-to-top-manager>
   </component>

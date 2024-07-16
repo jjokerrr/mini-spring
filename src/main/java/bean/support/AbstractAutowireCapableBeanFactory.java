@@ -1,11 +1,12 @@
 package bean.support;
 
+import bean.config.AutowireCapableBeanFactory;
 import bean.config.BeanDefinition;
 import bean.config.BeanReference;
 import bean.exception.BeanException;
 import cn.hutool.core.bean.BeanUtil;
 
-public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory {
+public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory implements AutowireCapableBeanFactory {
     private InstantiationStrategy instantiationStrategy = new SimpleInstantiationStrategy();
 
     @Override
@@ -18,14 +19,21 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
      * 创建Bean对象，填充Bean对象属性
      */
     private Object doCreateBean(String name, BeanDefinition beanDefinition) throws BeanException {
-        Object bean = instantiationStrategy.instantiate(beanDefinition);
+        Object bean = createBeanInstance(beanDefinition);
         applyPropertyValues(name, bean, beanDefinition);
         addSingleton(name, bean);
         return bean;
     }
+    /**
+     * 实例化Bean对象
+     */
+    private Object createBeanInstance(BeanDefinition beanDefinition) throws BeanException {
+        return getInstantiationStrategy().instantiate(beanDefinition);
+    }
 
     /**
-     * 填充Bean对象属性，对于属性值是一个Bean对象，则会递归的实例化Bean
+     * 注入Bean对象属性
+     * 对于属性值是一个Bean对象，则会递归的实例化Bean
      */
     private void applyPropertyValues(String beanName, Object bean, BeanDefinition beanDefinition) throws BeanException {
         PropertyValues propertyValues = beanDefinition.getPropertyValues();
@@ -43,4 +51,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         }
     }
 
+    public void setInstantiationStrategy(InstantiationStrategy instantiationStrategy) {
+        this.instantiationStrategy = instantiationStrategy;
+    }
+
+    public InstantiationStrategy getInstantiationStrategy() {
+        return instantiationStrategy;
+    }
 }
