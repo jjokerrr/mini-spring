@@ -1,7 +1,7 @@
-package common;
-
 import bean.support.DefaultListableBeanFactory;
 import bean.xml.XmlBeanDefinitionReader;
+import bean.Car;
+import bean.Person;
 import org.junit.Test;
 
 public class XmlDefineBeanTest {

@@ -1,7 +1,6 @@
-import bean.config.BeanDefinition;
 import bean.exception.BeanException;
 import bean.support.DefaultListableBeanFactory;
-import common.DemoClass;
+import bean.DemoClass;
 import org.junit.Test;
 
 public class BeanDefinitionRegistryAndBeanFactoryTest {

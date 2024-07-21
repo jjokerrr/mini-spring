@@ -3,7 +3,7 @@ import bean.exception.BeanException;
 import bean.support.DefaultListableBeanFactory;
 import bean.support.PropertyValue;
 import bean.support.PropertyValues;
-import common.Person;
+import bean.Person;
 import org.junit.Test;
 
 public class PopulateBeanWithPropertiesTest {

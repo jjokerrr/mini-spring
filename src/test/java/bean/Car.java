@@ -1,4 +1,4 @@
-package common;
+package bean;
 
 public class Car {
     private String brand;
