@@ -1,4 +1,4 @@
-package common;
+package bean;
 
 public class Car {
     private String brand;
@@ -8,6 +8,10 @@ public class Car {
     }
 
     public Car(String brand) {
+        this.brand = brand;
+    }
+
+    public void setBrand(String brand) {
         this.brand = brand;
     }
 
@@ -21,4 +25,6 @@ public class Car {
                 "brand='" + brand + '\'' +
                 '}';
     }
+
+
 }

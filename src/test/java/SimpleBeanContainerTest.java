@@ -1,9 +1,3 @@
-import bean.BeanFactory;
-import common.DemoClass;
-import org.junit.Test;
-
-import java.net.Socket;
-
 public class SimpleBeanContainerTest {
 
 
