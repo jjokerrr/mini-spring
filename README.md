@@ -58,3 +58,15 @@ BeanPostProcessor允许在Bean实例化之后修改Bean对象或者替换Bean对
 
 - 创建BeanFactoryPostProcessor，其实现类postProcessBeanFactory通过修改ConfigurableListableBeanFactory中的BeanDefinitionMap来修改BeanDefinition
 - 创建BeanPostProcessor接口，修改getBean方法的实现逻辑，在实例化Bean之后围绕Bean初始化阶段来增强Bean
+
+# ApplicationContext
+![ApplicationContext](./assets/ClassPathXmlApplicationContext.png)
+![ApplicationContext#refresh](./assets/ApplicationContext.png)
+
+ApplicationContext是在BeanFactory基础之上的进一步封装，支持BeanFactory的全部功能，在此基础之上，新增对BeanFactoryPostProcessor和BeanPostProcessor的自动识别、
+bean声明配置的资源加载，后续还会扩充关于容器事件和监听器、单例bean的自动初始化等
+BeanFactory是spring的基础设置，而Application是对BeanFactory的封装，面向Spring的使用者
+
+- 创建ApplicationContext接口以及其系列实现类，具体实现流程可参考上面的继承关系。
+- ApplicationContext中的重要方法refresh用于重建BeanFactory并自动加载BeanDefinition，提前初始化全部Bean对象，具体的方法逻辑可以参考上图
+- 重构包名

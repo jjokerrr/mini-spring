@@ -8,12 +8,14 @@
 		 http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
 
-    <bean id="person" class="bean.Person">
+    <bean id="person" class="org.myspringframework.bean.Person">
         <property name="name" value="derek"/>
         <property name="car" ref="car"/>
     </bean>
-    <bean id="car" class="bean.Car">
+    <bean id="car" class="org.myspringframework.bean.Car">
         <property name="brand" value="porsche"/>
     </bean>
+    <bean class="org.myspringframework.common.CustomBeanFactoryProcessor"/>
+    <bean class="org.myspringframework.common.CustomBeanPostProcessor"/>
 
 </beans>
