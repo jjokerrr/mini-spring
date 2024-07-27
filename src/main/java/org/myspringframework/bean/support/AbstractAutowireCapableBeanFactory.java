@@ -1,11 +1,17 @@
 package org.myspringframework.bean.support;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.ClassUtil;
+import cn.hutool.core.util.StrUtil;
+import org.myspringframework.bean.DisposableBean;
+import org.myspringframework.bean.InitializingBean;
 import org.myspringframework.bean.config.AutowireCapableBeanFactory;
 import org.myspringframework.bean.config.BeanDefinition;
 import org.myspringframework.bean.config.BeanPostProcessor;
 import org.myspringframework.bean.config.BeanReference;
 import org.myspringframework.bean.exception.BeanException;
+
+import java.lang.reflect.Method;
 
 
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory implements AutowireCapableBeanFactory {
@@ -29,33 +35,66 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
         // 初始化
         bean = initializeBean(bean, name, beanDefinition);
+
+        // 注册注销方法
+        registerDisposableBeanIfNecessary(name, bean, beanDefinition);
         // 添加实例化列表
         addSingleton(name, bean);
         return bean;
+    }
+
+    /**
+     * 注册disposeBean
+     */
+    private void registerDisposableBeanIfNecessary(String name, Object bean, BeanDefinition beanDefinition) {
+        if (bean instanceof DisposableBean || StrUtil.isNotBlank(beanDefinition.getDestroyMethodName())) {
+            registerDisposableBean(name, new DisposableBeanAdapter(bean, name, beanDefinition.getDestroyMethodName()));
+        }
     }
 
     private Object initializeBean(Object bean, String name, BeanDefinition beanDefinition) {
         // 初始化前
         Object wrappedBean = applyBeanPostProcessorsBeforeInitialization(bean, name);
         // 初始化
-        //TODO 后面会在此处执行bean的初始化方法
-        invokeInitMethods(name, wrappedBean, beanDefinition);
+        try {
+            invokeInitMethods(name, wrappedBean, beanDefinition);
+        } catch (Exception ex) {
+            throw new BeanException("Invocation of init method of bean[" + name + "] failed", ex);
+        }
         // 初始化后
         return applyBeanPostProcessorsAfterInitialization(wrappedBean, name);
     }
 
     /**
-     * bean对象的初始化方法
+     * bean对象的初始化方法，执行初始化方法存在三种形式
+     * 1. Bean继承InitializingBean对象，初始化阶段执行其中的afterPropertiesSet方法进行初始化
+     * 2. bean对象在声明过程中直接指明初始化方法，在初始化时执行
+     * 3. 在Bean的类中对应方法添加注解（后续实现）
+     * 同理，Bean的销毁方法也是这三个流程
      */
-    private void invokeInitMethods(String name, Object wrappedBean, BeanDefinition beanDefinition) {
-        System.out.println("execute the " + name + " init method ");
+    private void invokeInitMethods(String name, Object bean, BeanDefinition beanDefinition) throws Exception {
+        // 检查InitializingBean
+        if (bean instanceof InitializingBean) {
+            ((InitializingBean) bean).afterPropertiesSet();
+        }
+        // 检查是否注册init方法
+        String initMethodName = beanDefinition.getInitMethodName();
+        if (StrUtil.isNotBlank(initMethodName) && !(bean instanceof InitializingBean && "afterPropertiesSet".equals(initMethodName))) {
+            Method initMethod = ClassUtil.getPublicMethod(beanDefinition.getBeanClass(), initMethodName);
+            // 需要检查initMethod是否存在
+            if (initMethod == null) {
+                throw new BeanException("could not find the init-method named " + initMethodName + " on the bean with name " + name);
+            }
+            initMethod.invoke(bean);
+        }
     }
 
 
     /**
      * Bean对象初始化之前执行
      */
-    private Object applyBeanPostProcessorsBeforeInitialization(Object bean, String name) {
+    @Override
+    public Object applyBeanPostProcessorsBeforeInitialization(Object bean, String name) {
         // 赋值result的原因保证每一个处理链都能链式执行
         Object result = bean;
         for (BeanPostProcessor beanPostProcessor : getBeanPostProcessors()) {
@@ -68,7 +107,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         return result;
     }
 
-    private Object applyBeanPostProcessorsAfterInitialization(Object wrappedBean, String name) {
+    @Override
+    public Object applyBeanPostProcessorsAfterInitialization(Object wrappedBean, String name) {
         // 赋值result的原因保证每一个处理链都能链式执行
         Object result = wrappedBean;
         for (BeanPostProcessor beanPostProcessor : getBeanPostProcessors()) {

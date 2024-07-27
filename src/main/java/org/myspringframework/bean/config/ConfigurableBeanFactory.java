@@ -12,4 +12,9 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
      * Bean实例化后初始化之前执行Bean属性设置
      */
     void addBeanPostProcessor(BeanPostProcessor beanPostProcessor);
+
+    /**
+     * 执行Bean的销毁方法
+     */
+    void destroySingletons();
 }

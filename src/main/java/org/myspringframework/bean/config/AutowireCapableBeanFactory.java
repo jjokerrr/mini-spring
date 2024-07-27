@@ -4,7 +4,16 @@ package org.myspringframework.bean.config;
 import org.myspringframework.bean.BeanFactory;
 
 /**
- * 提供了自动装配（Autowiring）功能
+ * 具有配置能力的Bean，例如BeanPostProcessor的Bean对象
  */
 public interface AutowireCapableBeanFactory extends BeanFactory {
+    /**
+     * 执行BeanPostProcessors的postProcessBeforeInitialization方法
+     */
+    Object applyBeanPostProcessorsBeforeInitialization(Object bean, String name);
+    /**
+     * 执行BeanPostProcessors的postProcessAfterInitialization方法
+     */
+    Object applyBeanPostProcessorsAfterInitialization(Object bean, String name);
+    
 }

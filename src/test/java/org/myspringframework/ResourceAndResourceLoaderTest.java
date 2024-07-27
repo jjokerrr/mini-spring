@@ -2,8 +2,8 @@ package org.myspringframework;
 
 import cn.hutool.core.io.IoUtil;
 import org.junit.Test;
-import org.myspringframework.io.DefaultResourceLoader;
-import org.myspringframework.io.Resource;
+import org.myspringframework.core.io.DefaultResourceLoader;
+import org.myspringframework.core.io.Resource;
 
 import java.io.IOException;
 import java.io.InputStream;

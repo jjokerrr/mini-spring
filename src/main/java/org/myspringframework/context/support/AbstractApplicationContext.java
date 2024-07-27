@@ -6,7 +6,7 @@ import org.myspringframework.bean.config.BeanFactoryPostProcessor;
 import org.myspringframework.bean.config.BeanPostProcessor;
 import org.myspringframework.bean.exception.BeanException;
 import org.myspringframework.context.ConfigurableApplicationContext;
-import org.myspringframework.io.DefaultResourceLoader;
+import org.myspringframework.core.io.DefaultResourceLoader;
 
 import java.util.Map;
 
@@ -69,5 +69,25 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
     @Override
     public String[] getBeanDefinitionNames() {
         return this.getBeanFactory().getBeanDefinitionNames();
+    }
+
+
+    @Override
+    public void close() {
+        doClose();
+    }
+
+    @Override
+    public void registerShutdownHook() {
+        Thread shutdownHook = new Thread(this::doClose);
+        Runtime.getRuntime().addShutdownHook(shutdownHook);
+    }
+
+    private void doClose() {
+        destroyBeans();
+    }
+
+    private void destroyBeans() {
+        getBeanFactory().destroySingletons();
     }
 }

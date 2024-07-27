@@ -8,8 +8,8 @@ import org.myspringframework.bean.config.BeanReference;
 import org.myspringframework.bean.exception.BeanException;
 import org.myspringframework.bean.support.AbstractBeanDefinitionReader;
 import org.myspringframework.bean.support.PropertyValue;
-import org.myspringframework.io.Resource;
-import org.myspringframework.io.ResourceLoader;
+import org.myspringframework.core.io.Resource;
+import org.myspringframework.core.io.ResourceLoader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -27,6 +27,10 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
     public static final String CLASS_ATTRIBUTE = "class";
     public static final String VALUE_ATTRIBUTE = "value";
     public static final String REF_ATTRIBUTE = "ref";
+
+    public static final String INIT_METHOD_ATTRIBUTE = "init-method";
+
+    public static final String DESTROY_METHOD_ATTRIBUTE = "destroy-method";
 
     public XmlBeanDefinitionReader(BeanDefinitionRegistry registry) {
         super(registry);
@@ -72,6 +76,8 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
             String id = bean.getAttribute(ID_ATTRIBUTE);
             String name = bean.getAttribute(NAME_ATTRIBUTE);
             String className = bean.getAttribute(CLASS_ATTRIBUTE);
+            String initMethod = bean.getAttribute(INIT_METHOD_ATTRIBUTE);
+            String destroyMethod = bean.getAttribute(DESTROY_METHOD_ATTRIBUTE);
 
             // 加载class
             Class<?> cls = null;
@@ -87,7 +93,8 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
                 beanName = StrUtil.lowerFirst(cls.getSimpleName());
             }
             BeanDefinition beanDefinition = new BeanDefinition(cls);
-
+            beanDefinition.setInitMethodName(initMethod);
+            beanDefinition.setDestroyMethodName(destroyMethod);
 
             // 遍历bean标签下的所有property对象
             NodeList propertyNode = bean.getChildNodes();

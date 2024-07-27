@@ -2,8 +2,8 @@ package org.myspringframework.bean.support;
 
 
 import org.myspringframework.bean.config.BeanDefinitionRegistry;
-import org.myspringframework.io.Resource;
-import org.myspringframework.io.ResourceLoader;
+import org.myspringframework.core.io.Resource;
+import org.myspringframework.core.io.ResourceLoader;
 
 public interface BeanDefinitionReader {
 

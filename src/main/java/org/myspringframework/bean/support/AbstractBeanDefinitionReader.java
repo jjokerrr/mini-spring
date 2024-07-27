@@ -2,8 +2,8 @@ package org.myspringframework.bean.support;
 
 
 import org.myspringframework.bean.config.BeanDefinitionRegistry;
-import org.myspringframework.io.DefaultResourceLoader;
-import org.myspringframework.io.ResourceLoader;
+import org.myspringframework.core.io.DefaultResourceLoader;
+import org.myspringframework.core.io.ResourceLoader;
 
 public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader {
 
