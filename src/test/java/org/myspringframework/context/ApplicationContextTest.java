@@ -1,8 +1,8 @@
 package org.myspringframework.context;
 
-import org.myspringframework.bean.Car;
-import org.myspringframework.bean.Person;
 import org.junit.Test;
+import org.myspringframework.beans.Car;
+import org.myspringframework.beans.Person;
 import org.myspringframework.context.support.ClassPathXmlApplicationContext;
 
 public class ApplicationContextTest {

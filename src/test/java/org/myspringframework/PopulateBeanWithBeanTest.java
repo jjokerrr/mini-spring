@@ -1,14 +1,10 @@
 package org.myspringframework;
 
-import org.myspringframework.bean.Car;
-import org.myspringframework.bean.Person;
 import org.junit.Test;
-import org.myspringframework.bean.config.BeanDefinition;
-import org.myspringframework.bean.config.BeanReference;
-import org.myspringframework.bean.exception.BeanException;
-import org.myspringframework.bean.support.DefaultListableBeanFactory;
-import org.myspringframework.bean.support.PropertyValue;
-import org.myspringframework.bean.support.PropertyValues;
+import org.myspringframework.beans.*;
+import org.myspringframework.beans.factory.config.BeanDefinition;
+import org.myspringframework.beans.factory.config.BeanReference;
+import org.myspringframework.beans.factory.support.DefaultListableBeanFactory;
 
 public class PopulateBeanWithBeanTest {
 

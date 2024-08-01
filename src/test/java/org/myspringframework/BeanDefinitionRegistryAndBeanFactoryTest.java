@@ -2,9 +2,9 @@ package org.myspringframework;
 
 
 import org.junit.Test;
-import org.myspringframework.bean.DemoClass;
-import org.myspringframework.bean.exception.BeanException;
-import org.myspringframework.bean.support.DefaultListableBeanFactory;
+import org.myspringframework.beans.BeanException;
+import org.myspringframework.beans.DemoClass;
+import org.myspringframework.beans.factory.support.DefaultListableBeanFactory;
 
 public class BeanDefinitionRegistryAndBeanFactoryTest {
 

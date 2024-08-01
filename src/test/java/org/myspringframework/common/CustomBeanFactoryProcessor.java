@@ -1,11 +1,11 @@
 package org.myspringframework.common;
 
 
-import org.myspringframework.bean.ConfigurableListableBeanFactory;
-import org.myspringframework.bean.config.BeanDefinition;
-import org.myspringframework.bean.config.BeanFactoryPostProcessor;
-import org.myspringframework.bean.exception.BeanException;
-import org.myspringframework.bean.support.PropertyValue;
+import org.myspringframework.beans.BeanException;
+import org.myspringframework.beans.PropertyValue;
+import org.myspringframework.beans.factory.ConfigurableListableBeanFactory;
+import org.myspringframework.beans.factory.config.BeanDefinition;
+import org.myspringframework.beans.factory.config.BeanFactoryPostProcessor;
 
 public class CustomBeanFactoryProcessor implements BeanFactoryPostProcessor {
     @Override

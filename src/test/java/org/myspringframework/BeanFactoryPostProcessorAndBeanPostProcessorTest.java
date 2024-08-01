@@ -2,10 +2,10 @@ package org.myspringframework;
 
 
 import org.junit.Test;
-import org.myspringframework.bean.Car;
-import org.myspringframework.bean.Person;
-import org.myspringframework.bean.support.DefaultListableBeanFactory;
-import org.myspringframework.bean.xml.XmlBeanDefinitionReader;
+import org.myspringframework.beans.Car;
+import org.myspringframework.beans.Person;
+import org.myspringframework.beans.factory.support.DefaultListableBeanFactory;
+import org.myspringframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.myspringframework.common.CustomBeanFactoryProcessor;
 import org.myspringframework.common.CustomBeanPostProcessor;
 

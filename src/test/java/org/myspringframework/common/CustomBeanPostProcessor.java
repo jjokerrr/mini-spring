@@ -1,7 +1,7 @@
 package org.myspringframework.common;
 
-import org.myspringframework.bean.Car;
-import org.myspringframework.bean.config.BeanPostProcessor;
+import org.myspringframework.beans.Car;
+import org.myspringframework.beans.factory.config.BeanPostProcessor;
 
 public class CustomBeanPostProcessor implements BeanPostProcessor {
     @Override

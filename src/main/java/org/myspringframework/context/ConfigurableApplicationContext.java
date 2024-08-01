@@ -1,7 +1,7 @@
 package org.myspringframework.context;
 
 
-import org.myspringframework.bean.exception.BeanException;
+import org.myspringframework.beans.BeanException;
 
 public interface ConfigurableApplicationContext extends ApplicationContext {
 

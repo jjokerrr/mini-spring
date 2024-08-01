@@ -1,7 +1,7 @@
 package org.myspringframework;
 
 import org.junit.Test;
-import org.myspringframework.bean.Person;
+import org.myspringframework.beans.Person;
 import org.myspringframework.context.support.ClassPathXmlApplicationContext;
 
 public class InitAndDestroyMethodBeanTest {

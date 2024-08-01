@@ -1,9 +1,9 @@
 package org.myspringframework.context.support;
 
 
-import org.myspringframework.bean.exception.BeanException;
-import org.myspringframework.bean.support.DefaultListableBeanFactory;
-import org.myspringframework.bean.xml.XmlBeanDefinitionReader;
+import org.myspringframework.beans.BeanException;
+import org.myspringframework.beans.factory.support.DefaultListableBeanFactory;
+import org.myspringframework.beans.factory.xml.XmlBeanDefinitionReader;
 
 public abstract class AbstractXmlApplicationContext extends AbstractRefreshableApplicationContext {
     /**

@@ -2,12 +2,12 @@ package org.myspringframework;
 
 
 import org.junit.Test;
-import org.myspringframework.bean.Person;
-import org.myspringframework.bean.config.BeanDefinition;
-import org.myspringframework.bean.exception.BeanException;
-import org.myspringframework.bean.support.DefaultListableBeanFactory;
-import org.myspringframework.bean.support.PropertyValue;
-import org.myspringframework.bean.support.PropertyValues;
+import org.myspringframework.beans.BeanException;
+import org.myspringframework.beans.Person;
+import org.myspringframework.beans.PropertyValue;
+import org.myspringframework.beans.PropertyValues;
+import org.myspringframework.beans.factory.config.BeanDefinition;
+import org.myspringframework.beans.factory.support.DefaultListableBeanFactory;
 
 public class PopulateBeanWithPropertiesTest {
     @Test

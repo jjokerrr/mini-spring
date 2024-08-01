@@ -1,6 +1,6 @@
 package org.myspringframework.context.support;
 
-import org.myspringframework.bean.exception.BeanException;
+import org.myspringframework.beans.BeanException;
 
 public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContext {
     private String[] configLocations;

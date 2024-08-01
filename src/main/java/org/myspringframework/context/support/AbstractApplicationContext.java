@@ -1,10 +1,10 @@
 package org.myspringframework.context.support;
 
 
-import org.myspringframework.bean.ConfigurableListableBeanFactory;
-import org.myspringframework.bean.config.BeanFactoryPostProcessor;
-import org.myspringframework.bean.config.BeanPostProcessor;
-import org.myspringframework.bean.exception.BeanException;
+import org.myspringframework.beans.BeanException;
+import org.myspringframework.beans.factory.ConfigurableListableBeanFactory;
+import org.myspringframework.beans.factory.config.BeanFactoryPostProcessor;
+import org.myspringframework.beans.factory.config.BeanPostProcessor;
 import org.myspringframework.context.ConfigurableApplicationContext;
 import org.myspringframework.core.io.DefaultResourceLoader;
 
