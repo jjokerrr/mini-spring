@@ -86,3 +86,13 @@ BeanFactory是spring的基础设置，而Application是对BeanFactory的封装�
 ，拥有销毁方法的bean在`AbstractAutowireCapableBeanFactory#registerDisposableBeanIfNecessary`中注册到`disposableBeans`中。
 - 为了确保销毁方法在虚拟机关闭之前执行，向虚拟机中注册一个钩子方法，查看`AbstractApplicationContext#registerShutdownHook`（非web应用需要手动调用该方法）。
 - 当然也可以手动调用`ConfigurableApplicationContext#close`方法关闭容器。
+
+# Aware-Interface
+![AwareInterface](./assets/AwareInterface.png)
+`Aware` 接口使Bean对象拥有感知容器的能力，`Aware` 接口的两个实现类，`BeanFactoryAware` 和 `ApplicationContextAware` 分别实现了对`BeanFacoty`和`ApplicationContext` 的感知
+在实现BeanFactoryWare功能中，主要在Bean的初始化阶段进行操作，具体可以见 `org.myspringframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean`
+在实现ApplicationContextWare功能中，使用了BeanPostProcessor的功能，由于Bean对象的管理是通过ApplicationContext中的BeanFactory属性实现。具体实现可以参考`org.myspringframework.context.support.ApplicationContextAwareProcessor.postProcessBeforeInitialization` 
+![BeanFactoryAwareAndApplicatinoContextAware](./assets/BeanFactoryAwareAndApplicatinoContextAware.png)
+
+- 容器实现接口`Aware` 和子接口 `BeanFactoryAware` `ApplicationContextAware`
+- `ApplicationContextAware` 的实现支持 `ApplicationContextAwareProcessor`

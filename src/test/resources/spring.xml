@@ -14,5 +14,5 @@
     </bean>
     <bean class="org.myspringframework.common.CustomBeanFactoryProcessor"/>
     <bean class="org.myspringframework.common.CustomBeanPostProcessor"/>
-
+    <bean class="org.myspringframework.service.HelloService"/>
 </beans>

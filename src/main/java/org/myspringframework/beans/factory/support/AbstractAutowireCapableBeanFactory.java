@@ -6,6 +6,7 @@ import cn.hutool.core.util.StrUtil;
 import org.myspringframework.beans.BeanException;
 import org.myspringframework.beans.PropertyValue;
 import org.myspringframework.beans.PropertyValues;
+import org.myspringframework.beans.factory.BeanFactoryAware;
 import org.myspringframework.beans.factory.DisposableBean;
 import org.myspringframework.beans.factory.InitializingBean;
 import org.myspringframework.beans.factory.config.AutowireCapableBeanFactory;
@@ -55,6 +56,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     }
 
     private Object initializeBean(Object bean, String name, BeanDefinition beanDefinition) {
+        if(bean instanceof BeanFactoryAware){
+            ((BeanFactoryAware) bean).setBeanFactory(this);
+        }
+
+
         // 初始化前
         Object wrappedBean = applyBeanPostProcessorsBeforeInitialization(bean, name);
         // 初始化
