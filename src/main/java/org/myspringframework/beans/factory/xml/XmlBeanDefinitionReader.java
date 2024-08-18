@@ -32,6 +32,8 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
     public static final String DESTROY_METHOD_ATTRIBUTE = "destroy-method";
 
+    public static final String SCOPE_ATTRIBUTE = "scope";
+
     public XmlBeanDefinitionReader(BeanDefinitionRegistry registry) {
         super(registry);
     }
@@ -78,6 +80,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
             String className = bean.getAttribute(CLASS_ATTRIBUTE);
             String initMethod = bean.getAttribute(INIT_METHOD_ATTRIBUTE);
             String destroyMethod = bean.getAttribute(DESTROY_METHOD_ATTRIBUTE);
+            String beanScope = bean.getAttribute(SCOPE_ATTRIBUTE);
 
             // 加载class
             Class<?> cls = null;
@@ -95,6 +98,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
             BeanDefinition beanDefinition = new BeanDefinition(cls);
             beanDefinition.setInitMethodName(initMethod);
             beanDefinition.setDestroyMethodName(destroyMethod);
+            if (!StrUtil.isEmpty(beanScope)) {
+                beanDefinition.setScope(beanScope);
+            }
 
             // 遍历bean标签下的所有property对象
             NodeList propertyNode = bean.getChildNodes();
@@ -118,7 +124,6 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
                 }
                 PropertyValue propertyValue = new PropertyValue(nameAttr, value);
                 beanDefinition.getPropertyValues().addPropertyValue(propertyValue);
-
             }
 
             // 将BeanDefinition进行Registry

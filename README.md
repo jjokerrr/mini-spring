@@ -96,3 +96,9 @@ BeanFactory是spring的基础设置，而Application是对BeanFactory的封装�
 
 - 容器实现接口`Aware` 和子接口 `BeanFactoryAware` `ApplicationContextAware`
 - `ApplicationContextAware` 的实现支持 `ApplicationContextAwareProcessor`
+
+# Scope-Type
+增加Bean的范围模型，支持`proto`和`singleton`两种类型，proto为原型模式，每一次获取Bean对象都会生成一个新的Bean实例，并且proto类型的Bean不会触发销毁方法，singleton为单例模式只会创建一个单例对象存放在singletonMap中
+
+- `BeanDefinition`支持scope配置
+- 创建Bean对象时会根据对象scope类型判断是否存放在singletonMap中
