@@ -102,3 +102,12 @@ BeanFactory是spring的基础设置，而Application是对BeanFactory的封装�
 
 - `BeanDefinition`支持scope配置
 - 创建Bean对象时会根据对象scope类型判断是否存放在singletonMap中
+
+# Factory-Bean
+FactoryBean是一种特殊的bean，当向容器获取该bean时，容器不是返回其本身，而是返回其FactoryBean#getObject方法的返回值，可通过编码方式定义复杂的bean。
+
+在`getBean`方法中，当返回Bean对象实例时，会检查Bean对象的类型，如果是`FactoryBean`类型,会执行`getObject`方法并会根据是否单例写入缓存，具体参考`org.myspringframework.beans.factory.support.AbstractBeanFactory#getObjectForBeanInstance`
+
+- 创建`FactoryBean`接口
+- 修改`getBean`方法
+- 新增`factoryBeanCache`缓存
