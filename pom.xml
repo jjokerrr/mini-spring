@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mini-spring</groupId>
-    <artifactId>spring</artifactId>
+    <artifactId>mini-spring</artifactId>
     <version>1.0</version>
 
     <properties>
