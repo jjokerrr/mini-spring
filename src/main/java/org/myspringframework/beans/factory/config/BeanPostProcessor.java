@@ -11,7 +11,7 @@ public interface BeanPostProcessor {
     Object postProcessBeforeInitialization(Object bean, String beanName);
 
     /**
-     * Bean实例化之后初始化之前，修改Bean属性
+     * Bean实例化之后初始化之后，修改Bean属性
      */
     Object postProcessAfterInitialization(Object bean, String beanName);
 
