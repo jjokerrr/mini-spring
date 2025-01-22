@@ -111,3 +111,20 @@ FactoryBean是一种特殊的bean，当向容器获取该bean时，容器不是�
 - 创建`FactoryBean`接口
 - 修改`getBean`方法
 - 新增`factoryBeanCache`缓存
+
+# Event-and-EventListener
+实现Spring的事件机制，实现Spring的事件发布和事件监听机制。具体使用方法通过Spring的ApplicationContext容器发布事件，容器将事件广播给全部的ApplicationListener进行对应的消费
+
+基础接口
+- ApplicationEvent 容器事件
+- ApplicationEventPubliser 容器事件发布接口
+- ApplicationListener 容器事件监听接口
+
+event包下
+- ApplicationEventMulticaster  Spring广播事件接口
+- ApplicationContextEvent Spring Context事件，能够感知ApplicationContext容器
+- ContextRefreshedEvent 容器刷新事件
+- ContextClosedEvent 容器关闭事件
+- SimpleApplicationMulticaster 广播接口简单实现类
+
+在Context中，将ApplicationEventMulticaster 作为成员属性写入ApplicationContext，新增发布事件接口，实现接口广播逻辑
