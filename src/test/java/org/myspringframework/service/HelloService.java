@@ -16,6 +16,9 @@ public class HelloService implements ApplicationContextAware, BeanFactoryAware {
         return applicationContext;
     }
 
+    public void sayHello() {
+        System.out.println("Hello World");
+    }
 
     @Override
     public void setBeanFactory(BeanFactory beanFactory) {

@@ -128,3 +128,8 @@ event包下
 - SimpleApplicationMulticaster 广播接口简单实现类
 
 在Context中，将ApplicationEventMulticaster 作为成员属性写入ApplicationContext，新增发布事件接口，实现接口广播逻辑
+
+# PointcutExpression
+实现切入点表达式，支持execution开头切点表达式。利用aspectj包下的切点表达式解析能力。提供ClassFilter接口用于匹配类，提供MethodMatcher接口用于方法匹配
+
+PointCut需要同时匹配类和方法，包含ClassFilter和MethodMatcher，AspectJExpressionPointcut是支持AspectJ切点表达式的PointCut实现，简单实现仅支持execution函数。
