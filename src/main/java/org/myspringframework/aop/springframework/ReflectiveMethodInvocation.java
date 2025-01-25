@@ -11,9 +11,9 @@ import java.lang.reflect.Method;
  * Invocation封装类，用于MethodInterceptor调度执行
  **/
 public class ReflectiveMethodInvocation implements MethodInvocation {
-    private final Object target;
-    private final Method method;
-    private final Object[] arguments;
+    protected final Object target;
+    protected final Method method;
+    protected final Object[] arguments;
 
     public ReflectiveMethodInvocation(Object target, Method method, Object[] arguments) {
         this.target = target;

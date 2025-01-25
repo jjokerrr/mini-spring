@@ -6,7 +6,7 @@ import org.aopalliance.intercept.MethodInterceptor;
  * @author zhuangzhihao
  * created 2025/1/25
  **/
-public class AdviceSupport {
+public class AdvisedSupport {
     /**
      * 代理对象
      */

@@ -1,7 +1,7 @@
 package org.myspringframework.aop.springframework;
 
 import org.aopalliance.intercept.MethodInterceptor;
-import org.myspringframework.aop.AdviceSupport;
+import org.myspringframework.aop.AdvisedSupport;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -13,9 +13,9 @@ import java.lang.reflect.Proxy;
  **/
 public class JdkDynamicAopProxy implements AopProxy, InvocationHandler {
 
-    private final AdviceSupport advised;
+    private final AdvisedSupport advised;
 
-    public JdkDynamicAopProxy(AdviceSupport advised) {
+    public JdkDynamicAopProxy(AdvisedSupport advised) {
         this.advised = advised;
     }
 
