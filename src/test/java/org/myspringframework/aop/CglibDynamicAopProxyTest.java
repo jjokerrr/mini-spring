@@ -23,6 +23,5 @@ public class CglibDynamicAopProxyTest {
         advisedSupport.setMethodInterceptor(worldServiceInterceptor);
         WorldService proxy = (WorldService) new CglibDynamicAopProxy(advisedSupport).getProxy();
         proxy.explode();
-
     }
 }

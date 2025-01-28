@@ -133,3 +133,36 @@ event包下
 实现切入点表达式，支持execution开头切点表达式。利用aspectj包下的切点表达式解析能力。提供ClassFilter接口用于匹配类，提供MethodMatcher接口用于方法匹配
 
 PointCut需要同时匹配类和方法，包含ClassFilter和MethodMatcher，AspectJExpressionPointcut是支持AspectJ切点表达式的PointCut实现，简单实现仅支持execution函数。
+
+# Jdk-Dynamic-Proxy-Aop
+复习一下：
+
+基于jdk的动态代理，主要有几个关键点
+
+1. 基于接口来增强
+2. 动态代理类实现InvocationHandler
+3. 通过Proxy.newInstace来构建代理对象
+
+基于Jdk的动态代理机制，结合切面表达式实现基于接口的AOP增强。重要对象
+- TargetSource 基础对象的封装，对象接口
+- MethodInterceptor 增强逻辑
+- AdviceSupport 切面重要属性的集合
+  - TargetSource 记录需要增强的对象
+  - methodMatcher 匹配joinpoint
+  - methodInterceptor 方法增强逻辑
+- JdkDynamicAopProxy JDK动态代理实现逻辑，包括InvocationHandler接口和Proxy代理对象的获取
+
+# Proxy-Factory
+代理工厂，主要生产Cglib和Jdk两种模式，两种模式均实现AopProxy接口，主要方法getProxy获取动态代理对象
+
+代理工厂生产的类型由AdvisedSupport中的proxyTargetClass布尔型属性决定，具体含义表示为是否使用jdk动态代理，默认使用cglib动态代理
+
+- ProxyFactory 生产代理工厂
+- AdvisedSupport 增加是否使用cglib代理字段
+
+# Common-Advice
+增强Spring AOP的切面，常用的有BeforeAdvice/AfterAdvice/AfterReturningAdvice/ThrowsAdvice
+
+![common-advice.png](./assets/common-advice.png)
+
+GenericInterceptor基本方法增强类型用于MethodInterceptor
