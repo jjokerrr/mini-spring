@@ -166,3 +166,12 @@ PointCut需要同时匹配类和方法，包含ClassFilter和MethodMatcher，Asp
 ![common-advice.png](./assets/common-advice.png)
 
 GenericInterceptor基本方法增强类型用于MethodInterceptor
+
+# Pointcut-Advisor
+将切面、切面表达式和连接点组合到一起。Pointcut用于捕获JointPoint，Advice决定在JointPoint上增强的操作
+
+增加接口
+
++ Advisor getAdvice
++ PointcutAdvisor getPointcut方法
++ 实现类 AspectJExpressionPointcutAdvisor
