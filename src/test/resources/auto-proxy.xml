@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans">
+
+    <bean id="worldService" class="org.myspringframework.service.WorldServiceImpl"/>
+
+    <bean class="org.myspringframework.aop.springframework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+
+    <bean id="pointcutAdvisor" class="org.myspringframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
+        <property name="expression" value="execution(* org.myspringframework.service.WorldService.explode(..))"/>
+        <property name="advice" ref="methodInterceptor"/>
+    </bean>
+
+
+    <bean id="methodInterceptor" class="org.myspringframework.aop.springframework.adapter.MethodBeforeAdviceInterceptor">
+        <property name="advice" ref="beforeAdvice"/>
+    </bean>
+
+    <bean id="generaticMethodInterceptor" class="org.myspringframework.aop.GenericInterceptor">
+        <property name="beforeAdvice" ref="worldServiceBeforeService"/>
+        <property name="afterAdvice" ref="worldServiceAfterService"/>
+        <property name="afterReturningAdvice" ref="worldServiceAfterReturningService"/>
+    </bean>
+    <bean id="beforeAdvice" class="org.myspringframework.service.aop.WorldServiceMethodBeforeService"/>
+    <bean id="worldServiceBeforeService" class="org.myspringframework.service.aop.WorldServiceBeforeService"/>
+    <bean id="worldServiceAfterService" class="org.myspringframework.service.aop.WorldServiceAfterService"/>
+    <bean id="worldServiceAfterReturningService" class="org.myspringframework.service.aop.WorldServiceAfterReturningService"/>
+
+</beans>

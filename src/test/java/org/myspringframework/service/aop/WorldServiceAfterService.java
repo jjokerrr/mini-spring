@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
  * @author zhuangzhihao
  * created 2025/1/28
  **/
-public class WorkServiceAfterService implements AfterAdvice {
+public class WorldServiceAfterService implements AfterAdvice {
     @Override
     public void after(Method method, Object[] args, Object target) {
         System.out.println("after method");

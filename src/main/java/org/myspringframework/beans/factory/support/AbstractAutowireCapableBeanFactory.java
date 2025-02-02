@@ -9,21 +9,43 @@ import org.myspringframework.beans.PropertyValues;
 import org.myspringframework.beans.factory.BeanFactoryAware;
 import org.myspringframework.beans.factory.DisposableBean;
 import org.myspringframework.beans.factory.InitializingBean;
-import org.myspringframework.beans.factory.config.AutowireCapableBeanFactory;
-import org.myspringframework.beans.factory.config.BeanDefinition;
-import org.myspringframework.beans.factory.config.BeanPostProcessor;
-import org.myspringframework.beans.factory.config.BeanReference;
+import org.myspringframework.beans.factory.config.*;
 
 import java.lang.reflect.Method;
 
 
-public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory implements AutowireCapableBeanFactory {
+    public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory implements AutowireCapableBeanFactory {
     private InstantiationStrategy instantiationStrategy = new SimpleInstantiationStrategy();
 
     @Override
     protected Object createBean(String name, BeanDefinition beanDefinition) throws BeanException {
+        //如果bean需要代理，则直接返回代理对象，后续的初始化方法不在执行
+        Object bean = resolveBeforeInstantiation(name, beanDefinition);
+        if (bean != null) {
+            return bean;
+        }
         return doCreateBean(name, beanDefinition);
+    }
 
+    private Object resolveBeforeInstantiation(String beanName, BeanDefinition beanDefinition) {
+        Object bean = applyBeanPostProcessorsBeforeInstantiation(beanDefinition.getBeanClass(), beanName);
+        if (bean != null) {
+            bean = applyBeanPostProcessorsAfterInitialization(bean, beanName);
+        }
+        return bean;
+    }
+
+    private Object applyBeanPostProcessorsBeforeInstantiation(Class<?> beanClass, String beanName) {
+        Object bean = null;
+        for (BeanPostProcessor beanPostProcessor : getBeanPostProcessors()) {
+            if (beanPostProcessor instanceof InstantiationAwareBeanPostProcessor) {
+                bean = ((InstantiationAwareBeanPostProcessor) beanPostProcessor).postProcessBeforeInstantiation(beanClass, beanName);
+                if (bean != null) {
+                    return bean;
+                }
+            }
+        }
+        return bean;
     }
 
     /**

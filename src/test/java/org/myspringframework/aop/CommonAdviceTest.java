@@ -6,9 +6,9 @@ import org.myspringframework.aop.aspectj.AspectJExpressionPointcut;
 import org.myspringframework.aop.springframework.ProxyFactory;
 import org.myspringframework.service.WorldService;
 import org.myspringframework.service.WorldServiceImpl;
-import org.myspringframework.service.aop.WorkServiceAfterReturningService;
-import org.myspringframework.service.aop.WorkServiceAfterService;
-import org.myspringframework.service.aop.WorkServiceBeforeService;
+import org.myspringframework.service.aop.WorldServiceAfterReturningService;
+import org.myspringframework.service.aop.WorldServiceAfterService;
+import org.myspringframework.service.aop.WorldServiceBeforeService;
 
 /**
  * @author zhuangzhihao
@@ -32,13 +32,13 @@ public class CommonAdviceTest {
 
     @Test
     public void testBeforeAdvice() {
-        WorkServiceBeforeService workServiceBeforeService = new WorkServiceBeforeService();
-        WorkServiceAfterService workServiceAfterService = new WorkServiceAfterService();
-        WorkServiceAfterReturningService workServiceAfterReturningService = new WorkServiceAfterReturningService();
+        WorldServiceBeforeService worldServiceBeforeService = new WorldServiceBeforeService();
+        WorldServiceAfterService worldServiceAfterService = new WorldServiceAfterService();
+        WorldServiceAfterReturningService worldServiceAfterReturningService = new WorldServiceAfterReturningService();
         GenericInterceptor genericInterceptor = new GenericInterceptor();
-        genericInterceptor.setBeforeAdvice(workServiceBeforeService);
-        genericInterceptor.setAfterAdvice(workServiceAfterService);
-        genericInterceptor.setAfterReturningAdvice(workServiceAfterReturningService);
+        genericInterceptor.setBeforeAdvice(worldServiceBeforeService);
+        genericInterceptor.setAfterAdvice(worldServiceAfterService);
+        genericInterceptor.setAfterReturningAdvice(worldServiceAfterReturningService);
         advisedSupport.setMethodInterceptor(genericInterceptor);
         ProxyFactory proxyFactory = new ProxyFactory(advisedSupport);
         WorldService proxy = (WorldService) proxyFactory.getProxy();

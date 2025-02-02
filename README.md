@@ -175,3 +175,21 @@ GenericInterceptor基本方法增强类型用于MethodInterceptor
 + Advisor getAdvice
 + PointcutAdvisor getPointcut方法
 + 实现类 AspectJExpressionPointcutAdvisor
+
+# Auto-Proxy
+将代理融入spring的生命周期中，实际作用是在bean的创建过程中，会检查是否存在该bean的aop切面，匹配成功会创建一个新的代理对象。原始对象创建只作为代理对象的targetSource
+
+具体的，实现方式通过BeanPostProcessor接口实现，引入BeanPostProcessor相同功能的接口InstantiationAwareBeanPostProcessor（本质作用是一样的，该接口会超前执行，只作用于代理对象的生成）。在创建bean的createBean方法中，会首先执行该接口的实现类DefaultAdvisorAutoProxyCreator，提前实例化全部的AspectJExpressionPointcutAdvisor对象，改对象中存在全部需要代理的aop信息。
+
+坑点：由于在InstantiationAwareBeanPostProcessor处理阶段返回代理对象，会导致短路，不会继续走原来的创建bean的流程。如果全部的都检查代理对象，会导致死循环发生，因此要对aop相关的类进行提前放行
+
++ AbstractAutowireCapableBeanFactory  修改bean的创建逻辑，首先检查是否需要创建代理对象，具体在createBean方法中
++ DefaultAdvisorAutoProxyCreator  实现代理的重要实现类，用于创建代理对象，InstantiationAwareBeanPostProcessor的实现类
++ InstantiationAwareBeanPostProcessor 功能与BeanPostProcessor接口相同，用于创建bean代理对象
+
+
+
+结合aop创建后，现在bean的生命周期如下
+
+
+![aop-proxy](./assets/auto-proxy.png)

@@ -5,7 +5,7 @@ import org.myspringframework.aop.aspectj.AspectJExpressionPointcutAdvisor;
 import org.myspringframework.aop.springframework.ProxyFactory;
 import org.myspringframework.service.WorldService;
 import org.myspringframework.service.WorldServiceImpl;
-import org.myspringframework.service.aop.WorkServiceBeforeService;
+import org.myspringframework.service.aop.WorldServiceBeforeService;
 
 /**
  * @author zhuangzhihao
@@ -19,7 +19,7 @@ public class PointCutAdvisorTest {
         AspectJExpressionPointcutAdvisor advisor = new AspectJExpressionPointcutAdvisor();
         advisor.setExpression(expression);
         // 创建切面
-        BeforeAdvice advice = new WorkServiceBeforeService();
+        BeforeAdvice advice = new WorldServiceBeforeService();
         advisor.setAdvice(advice);
 
         AdvisedSupport advisedSupport = new AdvisedSupport();
